@@ -21,3 +21,12 @@ exports.create = (req, res) => {
         });
     });
 };
+
+exports.findAll = (req, res) => {
+    Greeting.find().then(greetings => res.send(greetings))
+        .catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occured during retreiving"
+            })
+        })
+};
