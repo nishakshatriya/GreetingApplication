@@ -5,4 +5,5 @@ module.exports = (app) => {
     app.get('/greetings', greetings.findAll);
     app.get('/greetings/:greetingId',greetings.findOne);
     app.put('/greetings/:greetingId',greetings.update);
+    app.delete('/greetings/:greetingId',greetings.delete)
 }

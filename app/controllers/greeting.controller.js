@@ -80,3 +80,24 @@ exports.update = (req, res) => {
         });
     });
 };
+
+exports.delete = (req, res) => {
+    Greeting.findByIdAndRemove(req.params.greetingId)
+    .then(greeting => {
+        if(!greeting) {
+            return res.status(404).send({
+                message: "Greeting not found with id " + req.params.greetingId
+            });
+        }
+        res.send({message: "Greeting deleted successfully!"});
+    }).catch(err => {
+        if(err.kind === 'ObjectId' || err.name === 'NotFound') {
+            return res.status(404).send({
+                message: "Greeting not found with id " + req.params.greetingId
+            });                
+        }
+        return res.status(500).send({
+            message: "Could not delete note with id " + req.params.greetingId
+        });
+    });
+};
