@@ -17,7 +17,7 @@ exports.create = (req, res) => {
         res.send(data);
     }).catch(err => {
         res.status(500).send({
-            message: err.message || "Some error occurred while creating the Note."
+            message: err.message || "Some error occurred while creating the Greeting."
         });
     });
 };
@@ -35,18 +35,18 @@ exports.findOne = (req, res) => {
     Greeting.findById(req.params.greetingId).then(greeting => {
         if (!greeting) {
             return res.status(404).send({
-                message: "Note not found" + req.params.greetingId
+                message: "Greeting not found" + req.params.greetingId
             })
         }
         res.send(greeting);
     }).catch(err => {
         if (err.kind === 'ObjectId') {
             return req.status(400).send({
-                message: "Note not found" + req.params.greetingId
+                message: "Greeting not found" + req.params.greetingId
             })
         }
         return res.status(500).send({
-            message: "Error while retreiving notes"
+            message: "Error while retreiving greeting"
         })
     })
 }
