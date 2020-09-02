@@ -6,6 +6,20 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
+const dbconfig = require('../greeting-application/config/database.config')
+const mongoose = require('mongoose');
+
+mongoose.Promise = global.Promise;
+
+mongoose.connect(dbconfig.url, {
+    useNewUrlParser: true
+}).then(()=>{
+    console.log("Successfully connected to database");
+}).catch(err => {
+    console.log('Could not connect to database');
+    process.exit();
+});
+
 app.get('/', (req, res) => {
     res.json({"message": "Welcome to greeting application."});
 });
