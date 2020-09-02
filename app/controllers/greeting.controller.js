@@ -50,3 +50,33 @@ exports.findOne = (req, res) => {
         })
     })
 }
+
+exports.update = (req, res) => {
+    if(!req.body.content) {
+        return res.status(400).send({
+            message: "Greeting content can not be empty"
+        });
+    }
+
+    Greeting.findByIdAndUpdate(req.params.greetingId, {
+        title: req.body.title || "Untitled Greeting",
+        content: req.body.content
+    }, {new: true})
+    .then(greeting => {
+        if(!greeting) {
+            return res.status(404).send({
+                message: "Greeting not found with id " + req.params.greetingId
+            });
+        }
+        res.send(greeting);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "Greeting not found with id " + req.params.greetingId
+            });                
+        }
+        return res.status(500).send({
+            message: "Error updating greeting with id " + req.params.greetingId
+        });
+    });
+};
