@@ -6,12 +6,12 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-const dbconfig = require('../greeting-application/config/database.config')
+const dbConfig = require('../greeting-application/config/database.config')
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect(dbconfig.url, {
+mongoose.connect(dbConfig.url, {
     useNewUrlParser: true
 }).then(()=>{
     console.log("Successfully connected to database");
