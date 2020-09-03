@@ -18,13 +18,11 @@ exports.findOne = (req, res) => {
 
 
 exports.update = (req, res) => {
-    let greeting = new Greeting();
     const greetingMsg = greeting.getMessage();
     res.send(greetingMsg); 
 }
 
 exports.delete = (req, res) => {
-    let greeting = new Greeting();
     const greetingMsg = greeting.getMessage();
     res.send(greetingMsg); 
 }
