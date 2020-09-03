@@ -1,19 +1,17 @@
 const Greeting = require('../services/greeting.service');
+const greeting = new Greeting();
 
 exports.create = (req, res) => {
-    let greeting = new Greeting();
     const greetingMsg = greeting.getMessage();
     res.send(greetingMsg);
 }
 
 exports.findAll = (req, res) => {
-    let greeting = new Greeting();
     const greetingMsg = greeting.getMessage();
     res.send(greetingMsg); 
 }
 
 exports.findOne = (req, res) => {
-    let greeting = new Greeting();
     const greetingMsg = greeting.getMessage();
     res.send(greetingMsg); 
 }
