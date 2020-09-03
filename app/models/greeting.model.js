@@ -7,4 +7,4 @@ const GreetingSchema = mongoose.Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model('Greeting', GreetingSchema);
+module.exports = mongoose.model('GreetingSchema', GreetingSchema);
