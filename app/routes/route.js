@@ -1,5 +1,5 @@
 module.exports = (app) => {
-    const greetings = require('../controllers/greeting.controller.js');
+    const greetings = require('../controllers/controller.js');
 
     app.post('/', greetings.create);
     app.get('/', greetings.findAll);

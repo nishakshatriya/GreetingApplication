@@ -1,4 +1,4 @@
-const Greeting = require('../services/greeting.service');
+const Greeting = require('../services/service');
 const greeting = new Greeting();
 
 exports.create = (req, res) => {

@@ -1,4 +1,4 @@
-const Greeting = require('../models/greeting.model');
+const Greeting = require('../models/model');
 
 let concatinate = "World";
 let counter = 0;
