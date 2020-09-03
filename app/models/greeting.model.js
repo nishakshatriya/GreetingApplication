@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
 
 const GreetingSchema = mongoose.Schema({
-    title: String,
-    content: String
+    firstName: String,
+    lastName: String,
+    message: String
 }, {
     timestamps: true
 });
 
 module.exports = mongoose.model('GreetingSchema', GreetingSchema);
+

@@ -20,9 +20,9 @@ mongoose.connect(dbConfig.url, {
     process.exit();
 });
 
-app.get('/', (req, res) => {
-    res.json({"message": "Welcome to Greeting application. Take notes quickly. Organize and keep track of all your greetings."});
-});
+// app.get('/', (req, res) => {
+//     res.json({"message": "Welcome to Greeting application. Take notes quickly. Organize and keep track of all your greetings."});
+// });
 
 require('./app/routes/greeting.route.js')(app);
 
