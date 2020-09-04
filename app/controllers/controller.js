@@ -34,10 +34,20 @@ exports.create = (req, res) => {
     } )
 }
 
-exports.findAll=(req, res)=>{
+exports.findAll=(greetingData, res)=>{
     try {
         Greeting.findAll(res,(res,item) => {res.send(item)});
     } catch (err) {
         res.status(500).send(err);
     }
+}
+
+exports.findOne = (req, res) => {
+
+    Greeting.findOne(req.params.greetingId,((err,data)=>{
+        if(err){
+            message: err.message || "something went wrong"
+        }
+                res.send(data);
+    }))
 }

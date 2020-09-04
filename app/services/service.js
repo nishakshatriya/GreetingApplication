@@ -59,5 +59,13 @@ exports.findAll=(res,callback)=> {
         });
 }
 
-
-  
+exports.findOne=(data,callback)=>{
+    console.log(data);
+   Greeting.findById(data).
+       then(data => {
+           console.log("note data--> ",data)
+           return callback(null,data)
+       }).catch(err =>{
+                       return callback({message : "Error retrieving with node Id"}) 
+                   })
+               }
