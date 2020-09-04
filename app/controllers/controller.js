@@ -2,11 +2,8 @@
  * @description imports service file for reference
  */
 const Greeting = require('../services/service');
+var { response } = require('express');
 
-/**
- * @description creating instance of greeting
- */
-const greeting = new Greeting();
 
 /**
  * @description performs CRUD operations
@@ -14,27 +11,26 @@ const greeting = new Greeting();
  * @param {object} res 
  */
 exports.create = (req, res) => {
-    const greetingMsg = greeting.getMessage(req.body);
-    res.send(greetingMsg);
+    var greetingData = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        message:req.body.message
+
+      };
+
+    Greeting.create(greetingData, function(err, data){
+        if(err){
+            response = {
+                success:false,
+                message: err
+            };
+            res.status(500).send(response)
+        }
+        response = {
+            success: true,
+            data: data
+        }
+        res.status(200).send(data)
+    } )
 }
 
-exports.findAll = (req, res) => {
-    const greetingMsg = greeting.getMessage(req.body);
-    res.send(greetingMsg); 
-}
-
-exports.findOne = (req, res) => {
-    const greetingMsg = greeting.getMessage(req.body);
-    res.send(greetingMsg);
-}
-
-
-exports.update = (req, res) => {
-    const greetingMsg = greeting.getMessage(req.body);
-    res.send(greetingMsg); 
-}
-
-exports.delete = (req, res) => {
-    const greetingMsg = greeting.getMessage(req.body);
-    res.send(greetingMsg); 
-}

@@ -29,7 +29,7 @@ mongoose.connect(dbConfig.url, {
 /**
  * @description import routes file
  */
-require('./app/routes/greeting.route.js')(app);
+require('./app/routes/route.js')(app);
 
 app.listen(3000, () => {
     console.log("Server is listening on port 3000");

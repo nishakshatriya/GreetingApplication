@@ -15,3 +15,22 @@ const GreetingSchema = mongoose.Schema({
 
 module.exports = mongoose.model('GreetingSchema', GreetingSchema);
 
+const messageSchema = mongoose.model('GreetingSchema', GreetingSchema);
+
+exports.create = (greetingData, callback) => {
+    const greetingSchema = new messageSchema();
+    greetingSchema.firstName = greetingData.firstName;
+    greetingSchema.lastName = greetingData.lastName;
+    greetingSchema.message = greetingData.message;
+  
+    messageSchema.save()
+    .then(data => {
+      callback(null, data);
+    })
+    .catch(err => {
+      callback(
+        { message: "Error While Storeing Book Deatils in DataBase" },
+        null
+      );
+    });
+  };

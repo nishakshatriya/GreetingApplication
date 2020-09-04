@@ -17,24 +17,11 @@ let counter = 0;
  * @return {object} message
  */
 
-module.exports = class HelloMessage{
-    getMessage(object){
-        if(object.firstName!== undefined  && object.lastName!== undefined){
-            if(typeof object.firstName === 'string' || object.firstName instanceof String && typeof object.lastName === 'string' || object.firstName instanceof String){
-                var message = "Hello";
-                   if(object.firstName !== ''){
-                       message+= " " +object.firstName;
-                       counter++;
-                   }
-                   if(object.lastName !== ''){
-                       message+= " " +object.lastName;
-                       counter++;
-                   }
-                   if(counter == 0){
-                       message+= " "+concatinate;                   
-                   }
-            }
-        }
-    return { 'message': message }
-    }
+exports.create = (greetingData, callback)=>{
+        Greeting.create(greetingData, function(err, data) {
+          if (err) {
+            return callback(err);
+          }
+          return callback(null, data);
+        });
 }
