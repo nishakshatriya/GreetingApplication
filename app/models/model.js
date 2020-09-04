@@ -34,3 +34,16 @@ exports.create = (greetingData, callback) => {
       );
     });
   };
+
+  exports.findAll=(res,callback)=> {
+    messageSchema.find()
+        .then( (item) => {
+            if (!item) {
+                throw new Error();
+            }
+            callback(res,item);
+        }).catch( (err) => {
+            callback(res,{err})
+        });
+}
+ 

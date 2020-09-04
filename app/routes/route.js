@@ -9,4 +9,5 @@ module.exports = (app) => {
     const greetings = require('../controllers/controller.js');
 
     app.post('/greetings/', greetings.create);
+    app.get('/greetingss/', greetings.findAll); 
 }

@@ -2,6 +2,7 @@
  * @description imports model file for reference
  */
 const Greeting = require('../models/model');
+const { response } = require('express');
 
 /**
  * @description service to get greeting message
@@ -38,10 +39,25 @@ exports.getMessage =(greetingData)=>{
 }
 exports.create = (greetingData, callback)=>{
     const message = this.getMessage(greetingData).message;
-        Greeting.create(greetingData, function(err, data) {
+        greetingData.create(greetingData, function(err, data) {
           if (err) {
             return callback(err);
           }   
           return callback(null, data);
         });
 }
+
+exports.findAll=(res,callback)=> {
+    Greeting.find()
+        .then( (item) => {
+            if (!item) {
+                throw new Error();
+            }
+            callback(res,item);
+        }).catch( (err) => {
+            callback(res,{err})
+        });
+}
+
+
+  
