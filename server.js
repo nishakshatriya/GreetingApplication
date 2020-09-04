@@ -1,3 +1,6 @@
+/**
+ * @description Configuration of server
+ */
 const express = require('express');
 const bodyParser = require('body-parser');
 
@@ -11,6 +14,9 @@ const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
+/**
+ * @description Database connectivity
+ */
 mongoose.connect(dbConfig.url, {
     useNewUrlParser: true
 }).then(() => {
@@ -20,10 +26,9 @@ mongoose.connect(dbConfig.url, {
     process.exit();
 });
 
-// app.get('/', (req, res) => {
-//     res.json({"message": "Welcome to Greeting application. Take notes quickly. Organize and keep track of all your greetings."});
-// });
-
+/**
+ * @description import routes file
+ */
 require('./app/routes/greeting.route.js')(app);
 
 app.listen(3000, () => {

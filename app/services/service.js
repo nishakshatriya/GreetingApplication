@@ -1,7 +1,21 @@
+/**
+ * @description imports model file for reference
+ */
 const Greeting = require('../models/model');
+
+/**
+ * @description service to get greeting message
+ * @return {object} message
+ */
 
 let concatinate = "World";
 let counter = 0;
+
+/**
+ * @description function that returns custom greeting message
+ * @params {object} object of request body
+ * @return {object} message
+ */
 
 module.exports = class HelloMessage{
     getMessage(object){
