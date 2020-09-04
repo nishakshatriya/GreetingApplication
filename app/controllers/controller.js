@@ -51,3 +51,13 @@ exports.findOne = (req, res) => {
                 res.send(data);
     }))
 }
+
+exports.delete = (req, res) => {
+    Greeting.deleting(req.params.greetingId,((err,data)=> {
+        if(err){
+            message:"something went wrong"
+        }
+        res.send(data)
+    
+}))
+}

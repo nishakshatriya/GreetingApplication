@@ -69,3 +69,12 @@ exports.findOne=(data,callback)=>{
                        return callback({message : "Error retrieving with node Id"}) 
                    })
                }
+
+exports.deleting = (data,callback) => {  
+    Greeting.findOneAndDelete(data).
+        then(data => {
+                return callback(null,data)
+            }).catch(err => {
+                    return callback({message:"Error occurred while deleting"})
+                })
+            }

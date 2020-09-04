@@ -58,4 +58,11 @@ exports.findOne = (data, callback) => {
     })
 }
 
-
+exports.delete = (data,callback) => {
+  messageSchema.findOneAndDelete(data).
+      then(date => {
+          return callback(null,data);
+      }).catch(er => {
+         return callback({message:"Error occurred while deleting"})
+      })
+}
