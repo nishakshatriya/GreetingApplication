@@ -29,7 +29,7 @@ exports.create = (greetingData, callback) => {
     })
     .catch(err => {
       callback(
-        { message: "Error While Storeing Book Deatils in DataBase" },
+        { message: "Error occured while storing greeting" },
         null
       );
     });

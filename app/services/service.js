@@ -16,12 +16,32 @@ let counter = 0;
  * @params {object} object of request body
  * @return {object} message
  */
-
+exports.getMessage =(greetingData)=>{
+        if(greetingData.firstName!== undefined  && greetingData.lastName!== undefined){
+            if(typeof greetingData.firstName === 'string' || greetingData.firstName instanceof String && typeof greetingData.lastName === 'string' || greetingData.firstName instanceof String){
+                var message = "Hello";
+                   if(greetingData.firstName !== ''){
+                       message+= " " +greetingData.firstName;
+                       counter++;
+                   }
+                   if(greetingData.lastName !== ''){
+                       message+= " " +greetingData.lastName;
+                       counter++;
+                   }
+                   if(counter == 0){
+                       message+= " "+concatinate;                 
+                   }
+            }
+        }
+        console.log('message generated', message);
+    return { 'message': message }
+}
 exports.create = (greetingData, callback)=>{
+    const message = this.getMessage(greetingData).message;
         Greeting.create(greetingData, function(err, data) {
           if (err) {
             return callback(err);
-          }
+          }   
           return callback(null, data);
         });
 }
