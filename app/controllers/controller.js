@@ -18,7 +18,7 @@ exports.create = (req, res) => {
 
       };
 
-    Greeting.create(greetingData, function(err, data){
+    Greeting.creating(greetingData, function(err, data){
         if(err){
             response = {
                 success:false,
@@ -53,11 +53,18 @@ exports.findOne = (req, res) => {
 }
 
 exports.delete = (req, res) => {
-    Greeting.deleting(req.params.greetingId,((err,data)=> {
-        if(err){
-            message:"something went wrong"
+    try{
+        if(req.params.greetingId === undefined){
+            throw new Error('invalid id');
         }
-        res.send(data)
-    
-}))
+        Greeting.deleting(req.params.greetingId,res,(res,data)=> {
+            res.send({
+                data:data,
+                message:"Greeting successfully Deleted"
+            });   
+        })
+    }catch(err){
+        res.status(500).send({message:err.message})
+    }
 }
+

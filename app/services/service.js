@@ -37,8 +37,9 @@ exports.getMessage =(greetingData)=>{
         console.log('message generated', message);
     return { 'message': message }
 }
-exports.create = (greetingData, callback)=>{
+exports.creating = (greetingData, callback)=>{
     const message = this.getMessage(greetingData).message;
+    console.log('message received=========>',message);
         greetingData.create(greetingData, function(err, data) {
           if (err) {
             return callback(err);
@@ -70,11 +71,19 @@ exports.findOne=(data,callback)=>{
                    })
                }
 
-exports.deleting = (data,callback) => {  
-    Greeting.findOneAndDelete(data).
+exports.deleting = (id,res,callback) => {  
+    Greeting.findByIdAndRemove(id).
         then(data => {
-                return callback(null,data)
+            if(!data){
+                return res.status(404).send({
+                    message:"Note not found with this id"
+                })
+            }
             }).catch(err => {
                     return callback({message:"Error occurred while deleting"})
                 })
+                return res.status(200).send({
+                    message:"Sucessfully Deleted"
+                })
             }
+

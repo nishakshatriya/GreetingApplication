@@ -10,6 +10,6 @@ module.exports = (app) => {
 
     app.post('/greetings/', greetings.create);
     app.get('/greetings/', greetings.findAll); 
-    app.get('/greetings/:greetingId',greetings.findOne)
-    app.delete('/greetings/:greetingId',greetings.delete)
+    app.get('/greetings/:greetingId',greetings.findOne);
+    app.delete('/greetings/:greetingId',greetings.delete);
 }
