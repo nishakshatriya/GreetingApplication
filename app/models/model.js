@@ -57,17 +57,19 @@ exports.findOne = (data, callback) => {
     })
 }
 
-exports.deleting = (req,res,callback) => {  
+exports.deleting = (req, res, callback) => {
   messageSchema.findByIdAndRemove(req.params.greetingId).
-      then(data => {
-        console.log('hsdjsbjk',req.params.greetingId);
-          if(!data){
-              return res.status(404).send({
-                  message:"Note not found with this id"
-              })
-          }
-          callback(res,{message: "greeting deleted Successfully"})
-          }).catch(err => {
-                  return callback({message:"Error occurred while deleting"})
-              })
-          }
+    then(data => {
+      console.log('hsdjsbjk', req.params.greetingId);
+      if (!data) {
+        return res.status(404).send({
+          message: "Note not found with this id"
+        })
+      }
+      callback(res, { message: "greeting deleted Successfully" })
+    }).catch(err => {
+      return callback({ message: "Error occurred while deleting" })
+    })
+}
+
+

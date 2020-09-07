@@ -18,7 +18,7 @@ exports.create = (req, res) => {
 
       };
 
-    Greeting.creating(greetingData, function(err, data){
+    Greeting.create(greetingData, function(err, data){
         if(err){
             response = {
                 success:false,

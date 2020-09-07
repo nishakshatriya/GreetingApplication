@@ -37,10 +37,17 @@ exports.getMessage =(greetingData)=>{
         console.log('message generated', message);
     return { 'message': message }
 }
-exports.creating = (greetingData, callback)=>{
+
+/**
+ * @description function that create and save greeting message
+ * @params {object} object of request body
+ * 
+ */
+
+exports.create = (greetingData, callback)=>{
     const message = this.getMessage(greetingData).message;
     console.log('message received=========>',message);
-        greetingData.create(greetingData, function(err, data) {
+        Greeting.create(greetingData, function(err, data) {
           if (err) {
             return callback(err);
           }   
@@ -48,6 +55,10 @@ exports.creating = (greetingData, callback)=>{
         });
 }
 
+/**
+ * @description function that get all greeting message
+ * @return {object} greetings
+ */
 exports.findAll=(res,callback)=> {
     Greeting.find()
         .then( (item) => {
@@ -60,6 +71,11 @@ exports.findAll=(res,callback)=> {
         });
 }
 
+/**
+ * @description function that get a single greeting message
+ * @params {object} object id of request body
+ * @return {object} greeting
+ */
 exports.findOne=(data,callback)=>{
     console.log(data);
    Greeting.findById(data).
@@ -71,6 +87,11 @@ exports.findOne=(data,callback)=>{
                    })
                }
 
+/**
+ * @description function that delete greeting message
+ * @params {object} object id of request body
+ * @return {object} greetings
+ */
 exports.deleting = (id,res,callback) => {  
     Greeting.findByIdAndRemove(id).
         then(data => {
@@ -86,4 +107,3 @@ exports.deleting = (id,res,callback) => {
                     message:"Sucessfully Deleted"
                 })
             }
-
