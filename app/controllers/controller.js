@@ -14,14 +14,14 @@ exports.create = (req, res) => {
     var greetingData = {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-        message:req.body.message
+        message: req.body.message
 
-      };
+    };
 
-    Greeting.create(greetingData, function(err, data){
-        if(err){
+    Greeting.create(greetingData, function (err, data) {
+        if (err) {
             response = {
-                success:false,
+                success: false,
                 message: err
             };
             res.status(500).send(response)
@@ -31,12 +31,12 @@ exports.create = (req, res) => {
             data: data
         }
         res.status(200).send(data)
-    } )
+    })
 }
 
-exports.findAll=(greetingData, res)=>{
+exports.findAll = (greetingData, res) => {
     try {
-        Greeting.findAll(res,(res,item) => {res.send(item)});
+        Greeting.findAll(res, (res, item) => { res.send(item) });
     } catch (err) {
         res.status(500).send(err);
     }
@@ -44,20 +44,37 @@ exports.findAll=(greetingData, res)=>{
 
 exports.findOne = (req, res) => {
 
-    Greeting.findOne(req.params.greetingId,((err,data)=>{
-        if(err){
+    Greeting.findOne(req.params.greetingId, ((err, data) => {
+        if (err) {
             message: err.message || "something went wrong"
         }
-                res.send(data);
+        res.send(data);
     }))
 }
 
 exports.delete = (req, res) => {
-    Greeting.deleting(req.params.greetingId,((err,data)=> {
-        if(err){
-            message:"something went wrong"
+    Greeting.deleting(req.params.greetingId, ((err, data) => {
+        if (err) {
+            message: "something went wrong"
         }
         res.send(data)
-    
-}))
+
+    }))
+}
+
+exports.update = (req, res) => {
+    try {
+        if (req.params.greetingId === undefined) {
+            throw new Error('invalid id');
+        } else if (req.body === undefined) {
+            throw new Error('invalid body content')
+        }
+        Greeting.updating(req.params.greetingId, res, (res, data) => {
+            res.send(data);
+        })
+    } catch (err) {
+        res.status(500).send({
+            message: 'Error occured while updating'
+        })
+    }
 }

@@ -78,3 +78,28 @@ exports.deleting = (data,callback) => {
                     return callback({message:"Error occurred while deleting"})
                 })
             }
+
+
+/**
+* @description function that updates/edits greeting message
+* @params {object} object id of request body
+* @return {object} greetings
+*/
+exports.updating = (req,res,callback) => {
+    Greeting.findByIdAndUpdate(req.params.greetingId,{
+    firstName: req.body.firstName,
+    lastName:req.body.lastName,
+    message:message.message
+    },{new: true})
+    .then(data => {
+    if(!data){
+    throw new Error();
+    }
+    return callback(res,data);
+    }).catch(err =>{
+    return callback({message:{
+    message:'error occured while updating'
+    }})
+    })
+    
+    }
