@@ -72,4 +72,18 @@ exports.deleting = (req, res, callback) => {
     })
 }
 
-
+exports.updating = (req,res,callback) => {
+  messageSchema.findByIdAndUpdate(req.params.greetingId,{
+  firstName: req.body.firstName,
+  lastName:req.body.lastName,
+  message:message.message
+  },{new: true})
+  .then(data => {
+  if(!data){
+  throw new Error();
+  }
+  return callback(res,data);
+  }).catch(err =>{
+  return callback({message:err.message})
+  })
+  }
