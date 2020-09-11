@@ -1,37 +1,38 @@
 /**
- * @description Configuration of server
+ * @description importing express
+ * @var {class} express class instance of express
  */
 const express = require('express');
-const bodyParser = require('body-parser');
 
-const app = express();
-
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
-
-const dbConfig = require('./config/database.config.js');
-const mongoose = require('mongoose');
-
-mongoose.Promise = global.Promise;
 
 /**
- * @description Database connectivity
+ * @description importing express
+ * @var {class} bodyParser class instance of body-parser
  */
-mongoose.connect(dbConfig.url, {
-    useNewUrlParser: true, useFindAndModify:false,
-    useCreateIndex:true, useUnifiedTopology:true
-}).then(() => {
-    console.log("Successfully connected to the database");    
-}).catch(err => {
-    console.log('Could not connect to the database. Exiting now...', err);
-    process.exit();
-});
+const bodyParser= require('body-parser');
 
 /**
- * @description import routes file
+ * @description exporting instance of express
+ * @var {class} app class instance of express
  */
-require('./app/routes/route.js')(app);
+module.exports = app = express();
 
+// using bodyparser middleware to parse the url of json type
+app.use(bodyParser.json());
+
+
+/**
+ * @description importing the db configuration
+ */
+require('../greeting-application/config/database.config');
+
+/**
+ * @description importing a instance of greeting routes
+ * passing app as param
+ */
+require('../greeting-application/app/routes/greeting')(app);
+
+// checking if the server is running
 app.listen(3000, () => {
-    console.log("Server is listening on port 3000");
+    console.log('server is listening on port 3000');
 });
