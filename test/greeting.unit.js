@@ -75,5 +75,60 @@ describe('Greeting App Test', () => {
                     done();
                 });
         });
+    }),
+
+    describe('Testing Responses', () => {
+        it('When given firstname then should return firstname + Hello', (done) => {
+            chai.request(app)
+                .post('/greeting')
+                .send({
+                    'firstName': 'Mona',
+                    'lastName': '',
+                })
+                .end( (err, response) => {
+                    result = response.body.message;
+                    assert.equal(result, 'Hello Mona');
+                    done();
+                });
+        });
+
+        it('When given lastname then should return lastname + Hello', (done) => {
+            chai.request(app)
+                .post('/greeting')
+                .send({
+                    'firstName': '',
+                    'lastName': 'Ghost',
+                }).end( (err, response) => {
+                    result = response.body.message;
+                    assert.equal(result, 'Hello Ghost');
+                    done();
+                });
+        });
+
+        it('When given firstname - lastname then should return firstname + lastname + Hello', (done) => {
+            chai.request(app)
+                .post('/greeting')
+                .send({
+                    'firstName': 'Bloody',
+                    'lastName': 'Mary',
+                }).end( (err, response) => {
+                    result = response.body.message;
+                    assert.equal(result, 'Hello Bloody Mary');
+                    done();
+                });
+        });
+
+        it('When no name given then should return Hello world', (done) => {
+            chai.request(app)
+                .post('/greeting')
+                .send({
+                    'firstName': '',
+                    'lastName': '',
+                }).end( (err, response) => {
+                    result = response.body.message;
+                    assert.equal(result, 'Hello World');
+                    done();
+                });
+        });
     })
 });
