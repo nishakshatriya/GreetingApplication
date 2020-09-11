@@ -33,7 +33,6 @@ module.exports = class greetingService {
                                }
                         }
                     }
-                    console.log('message generated', message);
                 return { 'message': message }
     };
 
