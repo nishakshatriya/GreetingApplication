@@ -7,7 +7,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/greeting-db', {
     useNewUrlParser: true,
 }).then( () => {
-    console.log('Successfully Connected to batabase');
+    console.log('Successfully Connected to database');
 }).catch( (err) => {
     console.log('Could not connect to the database. Exiting now...', err);
 });
