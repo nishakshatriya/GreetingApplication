@@ -3,6 +3,7 @@
  * @var {class} express class instance of express
  */
 const express = require('express');
+var cors = require('cors')
 
 
 /**
@@ -16,6 +17,8 @@ const bodyParser= require('body-parser');
  * @var {class} app class instance of express
  */
 module.exports = app = express();
+
+app.use(cors())
 
 // using bodyparser middleware to parse the url of json type
 app.use(bodyParser.json());
