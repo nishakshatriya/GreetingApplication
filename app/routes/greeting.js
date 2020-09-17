@@ -16,16 +16,16 @@ module.exports = (app) => {
 
     app.get('/greetings', greeting.findAll);
 
-    app.post('/greeting/', greeting.create);
+    app.post('/greetings/', greeting.create);
 
-    app.get('/greeting/', greeting.find);
+    app.get('/greetings/', greeting.find);
 
-    app.put('/greeting/', greeting.modify);
+    app.put('/greetings/', greeting.modify);
 
-    app.put('/greeting/:greetId', greeting.editGreeting);
+    app.put('/greetings/:greetId', greeting.editGreeting);
 
-    app.delete('/greeting', greeting.delete);
+    app.delete('/greetings', greeting.delete);
 
-    app.delete('/greeting/:greetId', greeting.deleteGreeting);
+    app.delete('/greetings/:greetId', greeting.deleteGreeting);
 };
 
